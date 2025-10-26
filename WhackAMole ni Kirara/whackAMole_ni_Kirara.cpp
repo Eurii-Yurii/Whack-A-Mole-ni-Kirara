@@ -3,41 +3,91 @@
 #include <iostream>
 using namespace std;
 
-void button() {
+void ground(int posX, int posY, int posZ) {
 
-    glColor3f(100,100,100);
     glBegin(GL_QUADS);
-    glVertex3f(1, 1, 1);
-    glVertex3f(5, 1, 1);
-    glVertex3f(5, 5, 1);
-    glVertex3f(1, 5, 1);
-    // Back
-    glVertex3f(1, 1, 0);
-    glVertex3f(5, 1, 0);
-    glVertex3f(5, 5, 0);
-    glVertex3f(1, 5, 0);
-    // Left
-    glVertex3f(1, 1, 0);
-    glVertex3f(1, 1, 1);
-    glVertex3f(1, 5, 1);
-    glVertex3f(1, 5, 0);
-    // Right
-    glVertex3f(5, 1, 0);
-    glVertex3f(5, 1, 1);
-    glVertex3f(5, 5, 1);
-    glVertex3f(5, 5, 0);
-    // Top
-    glVertex3f(1, 5, 0);
-    glVertex3f(5, 5, 0);
-    glVertex3f(5, 5, 1);
-    glVertex3f(1, 5, 1);
-    // Bottom
-    glVertex3f(1, 1, 0);
-    glVertex3f(5, 1, 0);
-    glVertex3f(5, 1, 1);
-    glVertex3f(1, 1, 1);
+    glColor3ub(102, 0, 0);
+    glVertex3f(-posX, posY, posZ);
+    glVertex3f(-posX, -posY, posZ);
+    glVertex3f(posX, -posY, posZ);
+    glVertex3f(posX, posY, posZ);
+
+    glEnd();
+}
+void button(int posX, int posY, int posZ) {
+
+    glBegin(GL_QUADS);
+    glColor3ub(32, 32, 32);
+    glVertex3f(posX, posY, posZ);
+    glVertex3f((posX - (-4)), posY, posZ);
+    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
+    glVertex3f(posX, (posY - (-4)), posZ);
+
+    glColor3ub(32, 32, 32);
+    glVertex3f(posX, posY, (posZ - 1));
+    glVertex3f((posX - (-4)), posY, (posZ - 1));
+    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
+    glVertex3f(posX, (posY - (-4)), (posZ - 1));
+
+    glColor3ub(32, 32, 32);
+    glVertex3f(posX, posY, (posZ - 1));
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX, (posY - (-4)), posZ);
+    glVertex3f(posX, (posY - (-4)), (posZ - 1));
+
+    glColor3ub(32, 32, 32);
+    glVertex3f((posX - (-4)), posY, (posZ - 1));
+    glVertex3f((posX - (-4)), posY, posZ);
+    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
+    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
+
+    glColor3ub(32, 32, 32);
+    glVertex3f(posX, (posY - (-4)), (posZ - 1));
+    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
+    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
+    glVertex3f(posX, (posY - (-4)), posZ);
+
+    glColor3ub(32, 32, 32);
+    glVertex3f(posX, posY, (posZ - 0));
+    glVertex3f((posX - (-4)), posY, (posZ - 1));
+    glVertex3f((posX - (-4)), posY, posZ);
+    glVertex3f(posX, posY, posZ);
     glEnd();
 
+    //Pressy Part
+    glBegin(GL_QUADS);
+    glColor3ub(255,0,0);
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
+
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
+
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
+
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
+
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
+    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
+    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
+
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
+    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
+    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
+
+    glEnd();
 }
 
 void RenderScene(void) {
@@ -46,14 +96,21 @@ void RenderScene(void) {
     glLoadIdentity();
 
     gluLookAt(
-        0.0f, -20.0f, 15.0f,
+        0.0f, -15.0f, 15.0f,
         0.0f, 0.0f, 0.0f,
         0.0f, 10.0f, 0.0f
     );
 
-    button();
+    
+    ground(15, 10,-1);
 
+    button(-13, 2, 1);
+    button(-2, 2.5, 1);
+    button(8, 2, 1);
 
+    button(-8, -5, 1);
+    button(3.5, -5, 1);
+    
     glutSwapBuffers();
 }
 
