@@ -3,6 +3,15 @@
 #include <iostream>
 using namespace std;
 
+/*
+TODO
+- Randomizer
+- Make Button(); shorter using recursion (would probably work)
+- Make Buttons Press
+- Score
+- ACTUALLY MAKE IT WHACK A MOLE
+*/
+
 void ground(int posX, int posY, int posZ) {
 
     glBegin(GL_QUADS);
@@ -14,6 +23,8 @@ void ground(int posX, int posY, int posZ) {
 
     glEnd();
 }
+
+//COULD PROBABLY MAKE THIS SHORTER USING RECURSION
 void button(int posX, int posY, int posZ) {
 
     glBegin(GL_QUADS);
