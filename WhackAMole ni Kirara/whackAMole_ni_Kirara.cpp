@@ -133,7 +133,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(1080, 720);
-    glutCreateWindow("MyOpenGL");
+    glutCreateWindow("Whack a Mole ni Kirara");
 
     glutDisplayFunc(RenderScene);
     glutReshapeFunc(ChangeSize);
