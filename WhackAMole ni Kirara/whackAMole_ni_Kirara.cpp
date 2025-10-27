@@ -122,6 +122,16 @@ int main(int argc, char** argv)
     glutIdleFunc(RenderScene);
 
     glEnable(GL_DEPTH_TEST);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_COLOR_MATERIAL);
+
+    GLfloat light_pos[] = { 0.0f, 20, 15.0f };
+    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+
+    glClearColor(0.1, 0.1, 0.1, 1.0);
+
     glutMainLoop();
     return 1;
 }
