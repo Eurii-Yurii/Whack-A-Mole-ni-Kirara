@@ -11,6 +11,43 @@ TODO
 - ACTUALLY MAKE IT WHACK A MOLE
 */
 
+void Box(float posX, float posY, float posZ, float length, float width, int height) {
+
+    glBegin(GL_QUADS);
+
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX + width, posY, posZ);
+    glVertex3f(posX + width, posY + length, posZ);
+    glVertex3f(posX, posY + length, posZ);
+
+    glVertex3f(posX, posY, posZ + height);
+    glVertex3f(posX + width, posY, posZ + height);
+    glVertex3f(posX + width, posY + length, posZ + height);
+    glVertex3f(posX, posY + length, posZ + height);
+
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX, posY, posZ + height);
+    glVertex3f(posX, posY + length, posZ + height);
+    glVertex3f(posX, posY + length, posZ);
+
+    glVertex3f(posX + width, posY, posZ);
+    glVertex3f(posX + width, posY, posZ + height);
+    glVertex3f(posX + width, posY + length, posZ + height);
+    glVertex3f(posX + width, posY + length, posZ);
+
+    glVertex3f(posX, posY + length, posZ);
+    glVertex3f(posX + width, posY + length, posZ);
+    glVertex3f(posX + width, posY + length, posZ + height);
+    glVertex3f(posX, posY + length, posZ + height);
+
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX + width, posY, posZ);
+    glVertex3f(posX + width, posY, posZ + height);
+    glVertex3f(posX, posY, posZ + height);
+    glEnd();
+
+}
+
 void ground(float posX, float posY, float posZ) {
 
     glBegin(GL_QUADS);
@@ -23,117 +60,17 @@ void ground(float posX, float posY, float posZ) {
     glEnd();
 }
 
-void button(float posX, float posY, float posZ) {
 
-    glBegin(GL_QUADS);
-    glColor3ub(32, 32, 32);
-    glVertex3f(posX, posY, posZ);
-    glVertex3f((posX - (-4)), posY, posZ);
-    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
-    glVertex3f(posX, (posY - (-4)), posZ);
+void button(float posX, float posY, float posZ, float length, float width, int height) {
 
-    glColor3ub(32, 32, 32);
-    glVertex3f(posX, posY, (posZ - 1));
-    glVertex3f((posX - (-4)), posY, (posZ - 1));
-    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
-    glVertex3f(posX, (posY - (-4)), (posZ - 1));
+    glColor3ub(32,32,32);
+    Box(posX,posY,posZ,length,width,height);
 
-    glColor3ub(32, 32, 32);
-    glVertex3f(posX, posY, (posZ - 1));
-    glVertex3f(posX, posY, posZ);
-    glVertex3f(posX, (posY - (-4)), posZ);
-    glVertex3f(posX, (posY - (-4)), (posZ - 1));
-
-    glColor3ub(32, 32, 32);
-    glVertex3f((posX - (-4)), posY, (posZ - 1));
-    glVertex3f((posX - (-4)), posY, posZ);
-    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
-    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
-
-    glColor3ub(32, 32, 32);
-    glVertex3f(posX, (posY - (-4)), (posZ - 1));
-    glVertex3f((posX - (-4)), (posY - (-4)), (posZ - 1));
-    glVertex3f((posX - (-4)), (posY - (-4)), posZ);
-    glVertex3f(posX, (posY - (-4)), posZ);
-
-    glColor3ub(32, 32, 32);
-    glVertex3f(posX, posY, (posZ - 0));
-    glVertex3f((posX - (-4)), posY, (posZ - 1));
-    glVertex3f((posX - (-4)), posY, posZ);
-    glVertex3f(posX, posY, posZ);
-    glEnd();
-
-    //Pressy Part
-    glBegin(GL_QUADS);
-    glColor3ub(255,0,0);
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
-
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
-
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
-
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
-
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 1.5);
-    glVertex3f(posX - (-3.5), posY - (-0.5), posZ + 0.1);
-    glVertex3f(posX - (-0.5), posY - (-0.5), posZ + 0.1);
-
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 1.5);
-    glVertex3f(posX - (-0.5), posY - (-3.5), posZ + 0.1);
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 0.1);
-    glVertex3f(posX - (-3.5), posY - (-3.5), posZ + 1.5);
-
-    glEnd();
+    glColor3ub(255, 0, 0);
+    Box((posX + 0.5), (posY + 0.5), (posZ + 0.5), (length - 1), (width - 1), (height + 1.5));
 }
 
-void makeABox(float posX, float posY, float posZ, float length, float width, int height) {
 
-    glBegin(GL_QUADS);
-    glVertex3f(posX, posY, posZ);
-    glVertex3f(posX, (posY + length), posZ);
-    glVertex3f((posX + width), (posY + length), posZ);
-    glVertex3f((posX + width), posY, posZ);
-
-    glVertex3f(posX, posY, (posZ + height));
-    glVertex3f(posX, (posY + length), (posZ + height));
-    glVertex3f((posX + width), (posY + length), (posZ + height));
-    glVertex3f((posX + width), posY, (posZ + height));
-
-    glVertex3f(posX, posY, posZ);
-    glVertex3f(posX, posY, (posZ + height));
-    glVertex3f(posX, (posY + length), (posZ + height));
-    glVertex3f(posX, (posY + length), posZ);
-
-    glVertex3f(posX, posY, posZ);
-    glVertex3f(posX, posY, (posZ + height));
-    glVertex3f(posX - (-width), posY, (posZ - (-height)));
-    glVertex3f(posX - (-width), posY, posZ);
-
-    glVertex3f(posX, posY, posZ);
-    glVertex3f(posX, posY, (posZ - (-height)));
-    glVertex3f((posX - (-width)), posY, (posZ - (-height)));
-    glVertex3f((posX - (-width)), posY, posZ);
-
-    glVertex3f((posX - (-width)), posY, posZ);
-    glVertex3f((posX - (-width)), posY, (posZ - (-height)));
-    glVertex3f((posX - (-width)), (posY - (-length)), (posZ - (-height)));
-    glVertex3f((posX - (-width)), (posY - (-length)), posZ);
-    glEnd();
-
-}
 
 void RenderScene(void) {
 
@@ -141,7 +78,7 @@ void RenderScene(void) {
     glLoadIdentity();
 
     gluLookAt(
-        0.0f, -15.0f, 20.0f,
+        0.0f, -20, 15.0f,
         0.0f, 0.0f, 0.0f,
         0.0f, 10.0f, 0.0f
     );
@@ -149,14 +86,12 @@ void RenderScene(void) {
     
     ground(15, 10,-1);
 
-    button(-13, 2, 1);
-    button(-2, 2.5, 1);
-    button(8, 2, 1);
+    button(-13, 2, 0, 5, 5, 1);
+    button(-2, 2, 0, 5, 5, 1);
+    button(8, 2, 0, 5, 5, 1);
+    button(-8, -5, 0, 5, 5, 1);
+    button(3.5, -5, 0, 5, 5, 1);
 
-    button(-8, -5, 1);
-    button(3.5, -5, 1);
-
-    //makeABox(1,5,0,5,5,5);
     
     glutSwapBuffers();
 }
