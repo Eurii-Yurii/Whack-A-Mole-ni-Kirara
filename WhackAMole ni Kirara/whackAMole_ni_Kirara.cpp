@@ -6,13 +6,12 @@ using namespace std;
 /*
 TODO
 - Randomizer
-- Make Button(); shorter using recursion (would probably work)
 - Make Buttons Press
 - Score
 - ACTUALLY MAKE IT WHACK A MOLE
 */
 
-void ground(int posX, int posY, int posZ) {
+void ground(float posX, float posY, float posZ) {
 
     glBegin(GL_QUADS);
     glColor3ub(102, 0, 0);
@@ -24,8 +23,7 @@ void ground(int posX, int posY, int posZ) {
     glEnd();
 }
 
-//COULD PROBABLY MAKE THIS SHORTER USING RECURSION
-void button(int posX, int posY, int posZ) {
+void button(float posX, float posY, float posZ) {
 
     glBegin(GL_QUADS);
     glColor3ub(32, 32, 32);
@@ -101,26 +99,52 @@ void button(int posX, int posY, int posZ) {
     glEnd();
 }
 
+void makeABox(float posX, float posY, float posZ, float length, float width, int height) {
+
+    glBegin(GL_QUADS);
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX, (posY - (-length)), posZ);
+    glVertex3f((posX - (-width)), (posY - (-length)), posZ);
+    glVertex3f((posX - (-width)), posY, posZ);
+
+    glVertex3f(posX, posY, (posZ - (-height)));
+    glVertex3f(posX, (posY - (-length)), (posZ - (-height)));
+    glVertex3f((posX - (-width)), (posY - (-length)), (posZ - (-height)));
+    glVertex3f((posX - (-width)), posY, (posZ - (-height)));
+
+    glVertex3f(posX, posY, posZ);
+    glVertex3f(posX, (posY - (-length)), posZ);
+    glVertex3f(posX, posY, (posZ - (-height)));
+    glVertex3f(posX, (posY - (-length)), (posZ - (-height)));
+
+    glVertex3f(posX, posY, posZ);
+
+    glEnd();
+
+}
+
 void RenderScene(void) {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     gluLookAt(
-        0.0f, -15.0f, 15.0f,
+        0.0f, -15.0f, 20.0f,
         0.0f, 0.0f, 0.0f,
         0.0f, 10.0f, 0.0f
     );
 
     
-    ground(15, 10,-1);
+    //ground(15, 10,-1);
 
-    button(-13, 2, 1);
+    /*button(-13, 2, 1);
     button(-2, 2.5, 1);
     button(8, 2, 1);
 
     button(-8, -5, 1);
-    button(3.5, -5, 1);
+    button(3.5, -5, 1);*/
+
+    makeABox(1,5,0,5,5,5);
     
     glutSwapBuffers();
 }
