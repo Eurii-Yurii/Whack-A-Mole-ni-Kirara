@@ -3,13 +3,8 @@
 #include <iostream>
 using namespace std;
 
-/*
-TODO
-- Randomizer
-- Make Buttons Press
-- Score
-- ACTUALLY MAKE IT WHACK A MOLE
-*/
+
+bool buttonStatus = false;
 
 void Box(float posX, float posY, float posZ, float length, float width, int height) {
 
@@ -63,27 +58,44 @@ void ground(float posX, float posY, float posZ) {
 
 void button(float posX, float posY, float posZ, float length, float width, int height) {
 
+    float pressedHeight = 1.5;
+    int R, G, B;
+    R = 255;
+    G = 0;
+    B = 0;
+
+    if (buttonStatus == true) {
+        pressedHeight = 0.5;
+        R = 200;
+        G = 0;
+        B = 0;
+    }
+
     glColor3ub(32,32,32);
     Box(posX,posY,posZ,length,width,height);
+    
 
-    glColor3ub(255, 0, 0);
-    Box((posX + 0.5), (posY + 0.5), (posZ + 0.5), (length - 1), (width - 1), (height + 1.5));
+    glColor3ub(R, G, B);
+    Box((posX + 0.5), (posY + 0.5), (posZ + 0.5), (length - 1), (width - 1), (height + pressedHeight));
+
 }
 
-
+void camera() {
+    gluLookAt(
+        0.0f, -20, 15.0f,
+        0.0f, 0.0f, 0.0f,
+        0.0f, 10.0f, 0.0f
+    );
+}
 
 void RenderScene(void) {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(
-        0.0f, -20, 15.0f,
-        0.0f, 0.0f, 0.0f,
-        0.0f, 10.0f, 0.0f
-    );
-
+    camera();
     
+
     ground(15, 10,-1);
 
     button(-13, 2, 0, 5, 5, 1);
@@ -109,6 +121,33 @@ void ChangeSize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+void keyUp(unsigned char key, int x, int y) {
+
+    switch (key) {
+    case 'q':
+        buttonStatus = false;
+        glutPostRedisplay();
+        break;
+    }
+}
+
+void keyDown(unsigned char key, int x, int y) {
+
+    switch (key) {
+    case 'q':
+        buttonStatus = true;
+        glutPostRedisplay();
+        break;
+    }
+}
+
+void controls() {
+
+    glutKeyboardUpFunc(keyUp);
+    glutKeyboardFunc(keyDown);
+}
+
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -121,16 +160,10 @@ int main(int argc, char** argv)
     glutReshapeFunc(ChangeSize);
     glutIdleFunc(RenderScene);
 
+    controls();
+
     glEnable(GL_DEPTH_TEST);
 
-    /*glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_COLOR_MATERIAL);
-
-    GLfloat light_pos[] = { 0.0f, 20, 15.0f };
-    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
-
-    glClearColor(0.1, 0.1, 0.1, 1.0);*/
 
     glutMainLoop();
     return 1;
